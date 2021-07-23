@@ -17,118 +17,360 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <!-- Calender -->
+    <link rel="stylesheet" href="./css/evo-calendar.css">
+    <script src="./js/evo-calendar.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-    <div style="width: 100%;padding: 10px;height: 20vh;">
-        
-        <form class="w-50 d-block">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Search Courses</label>
-                <div class="d-flex">
-                    <input id="search_input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search Courses/Topics here ..." onkeyup="searchFunction()">
-                    <span class="btn btn-primary ml-2">Search</span>
-                </div>
-                
+    <form class="w-50 d-block ml-2">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Search Courses</label>
+            <div class="d-flex">
+                <input id="search_input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search Courses/Topics here ..." onkeyup="searchFunction()">
+                <span class="btn btn-primary ml-2">Search</span>
             </div>
-        </form>
-        <div id="filter_button_container">
-            <span id="filter_physics" class="btn btn-secondary" onclick="setFilter('physics')">Physics</span>
-            <span id="filter_chem" class="btn btn-secondary" onclick="setFilter('chemistry')">Chemistry</span>
-            <span id="filter_maths" class="btn btn-secondary" onclick="setFilter('mathematics')">Mathematics</span>
-            <span id="filter_open" class="btn btn-secondary" onclick="setFilter('open')">Open</span>
-            <span id="filter_close" class="btn btn-secondary" onclick="setFilter('close')">Close</span>
-
-
+            
+        </div>
+    </form>
+    <span id="list_toggle_btn" class="btn btn-primary ml-2" onclick="toggleList()">List</span>
+    <span id="calender_toggle_btn" class="btn btn-primary" onclick="toggleCalender()">Calender</span>
+    <div id="list_container">
+        <div style="width: 100%;padding: 10px;">
+            <div id="filter_button_container">
+                <span id="filter_physics" class="btn btn-secondary" onclick="setFilter('physics')">Physics</span>
+                <span id="filter_chem" class="btn btn-secondary" onclick="setFilter('chemistry')">Chemistry</span>
+                <span id="filter_maths" class="btn btn-secondary" onclick="setFilter('mathematics')">Mathematics</span>
+                <span id="filter_open" class="btn btn-secondary" onclick="setFilter('open')">Open</span>
+                <span id="filter_close" class="btn btn-secondary" onclick="setFilter('close')">Close</span>
+    
+    
+            </div>
+        </div>
+        <div style="width: 100%;padding: 10px">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">State</th>
+    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table_row">
+                    <th scope="row">1</th>
+                    <td class="subject_name">Physics</td>
+                    <td class="topic_name">Fluid Mechanics</td>
+                    <td>20 Hrs.</td>
+                    <td class="state">Open</td>
+    
+                  </tr>
+                  <tr class="table_row">
+                    <th scope="row">2</th>
+                    <td class="subject_name">Physics</td>
+                    <td class="topic_name">Current Electricity</td>
+                    <td>15 Hrs.</td>
+                    <td class="state">Open</td>
+                  </tr>
+                  <tr class="table_row">
+                    <th scope="row">3</th>
+                    <td class="subject_name">Physics</td>
+                    <td class="topic_name">Modern Physics</td>
+                    <td>25 Hrs.</td>
+                    <td class="state">Close</td>
+                  </tr>
+                  <!-- Chemistry -->
+                  <tr class="table_row">
+                    <th scope="row">4</th>
+                    <td class="subject_name">Chemistry</td>
+                    <td class="topic_name">Chemical Bonding</td>
+                    <td>20 Hrs.</td>
+                    <td class="state">Open</td>
+    
+                  </tr>
+                  <tr class="table_row">
+                    <th scope="row">5</th>
+                    <td class="subject_name">Chemistry</td>
+                    <td class="topic_name">General Organic Chemistry</td>
+                    <td>15 Hrs.</td>
+                    <td class="state">Open</td>
+                  </tr>
+                  <tr class="table_row">
+                    <th scope="row">6</th>
+                    <td class="subject_name">Chemistry</td>
+                    <td class="topic_name">Thermodynamics</td>
+                    <td>25 Hrs.</td>
+                    <td class="state">Close</td>
+                  </tr>
+                  <!-- Mathematics -->
+                  <tr class="table_row">
+                    <th scope="row">7</th>
+                    <td class="subject_name">Mathematics</td>
+                    <td class="topic_name">Relation & Function</td>
+                    <td>20 Hrs.</td>
+                    <td class="state">Open</td>
+    
+                  </tr>
+                  <tr class="table_row">
+                    <th scope="row">8</th>
+                    <td class="subject_name">Mathematics</td>
+                    <td class="topic_name">Trigeonometry</td>
+                    <td>15 Hrs.</td>
+                    <td class="state">Open</td>
+                  </tr>
+                  <tr class="table_row">
+                    <th scope="row">8</th>
+                    <td class="subject_name">Mathematics</td>
+                    <td class="topic_name">Probability</td>
+                    <td>25 Hrs.</td>
+                    <td class="state">Close</td>
+                  </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div style="width: 100%;padding: 10px">
-        <table class="table table-striped">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Topic</th>
-                <th scope="col">Hours</th>
-                <th scope="col">State</th>
+    
+    
+    
+    
+    <div id="calender_container" class="calender_container">
+        <div class="events_container">
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">July</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">Aug</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">July</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">Sep</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">Aug</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">July</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">Apr</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">Dec</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">July</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event_card">
+                <div class="event_date_container">
+                    <div class="event_month">Jan</div>
+                    <div class="event_date">23</div>
+                </div>
+                <div class="event_details ml-2">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                    <div class="event_id mt-2">ENVS_143</div>
+                    <div class="location_container mt-2">
+                        <img src="./icons/pin.png">
+                        <div class="location ml-1">Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                    <div class="people_container mt-2">
+                        <img src="./icons/people.png">
+                        <div class="people ml-1">15/78</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 p-4">
+            <div class="dropdown_container w-100 d-flex justify-content-start">
+                <select id="month_dropdown" onchange="selectMonth()">
+                    <option value='1'>Janaury</option>
+                    <option value='2'>February</option>
+                    <option value='3'>March</option>
+                    <option value='4'>April</option>
+                    <option value='5'>May</option>
+                    <option value='6'>June</option>
+                    <option selected value='7'>July</option>
+                    <option value='8'>August</option>
+                    <option value='9'>September</option>
+                    <option value='10'>October</option>
+                    <option value='11'>November</option>
+                    <option value='12'>December</option>
+                </select>
+            
+                <select class="ml-2" id="year_dropdown" onchange="selectYear()">
+                    <option selected value='2021'>2021</option>
+                    <option value='2020'>2020</option>
+                    <option value='2019'>2019</option>
+                    <option value='2018'>2018</option>
+                    <option value='2017'>2017</option>
+                    <option value='2016'>2016</option>
+                    <option value='2015'>2015</option>
+                    <option value='2014'>2014</option>
+                    <option value='2013'>2013</option>
+                    <option value='2012'>2012</option>
+                    <option value='2011'>2011</option>
+                    <option value='2010'>2011</option>
+                </select>
+            </div>
+            <div id="evoCalendar" class="event-hide"></div>
 
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table_row">
-                <th scope="row">1</th>
-                <td class="subject_name">Physics</td>
-                <td class="topic_name">Fluid Mechanics</td>
-                <td>20 Hrs.</td>
-                <td class="state">Open</td>
+        </div>
 
-              </tr>
-              <tr class="table_row">
-                <th scope="row">2</th>
-                <td class="subject_name">Physics</td>
-                <td class="topic_name">Current Electricity</td>
-                <td>15 Hrs.</td>
-                <td class="state">Open</td>
-              </tr>
-              <tr class="table_row">
-                <th scope="row">3</th>
-                <td class="subject_name">Physics</td>
-                <td class="topic_name">Modern Physics</td>
-                <td>25 Hrs.</td>
-                <td class="state">Close</td>
-              </tr>
-              <!-- Chemistry -->
-              <tr class="table_row">
-                <th scope="row">4</th>
-                <td class="subject_name">Chemistry</td>
-                <td class="topic_name">Chemical Bonding</td>
-                <td>20 Hrs.</td>
-                <td class="state">Open</td>
-
-              </tr>
-              <tr class="table_row">
-                <th scope="row">5</th>
-                <td class="subject_name">Chemistry</td>
-                <td class="topic_name">General Organic Chemistry</td>
-                <td>15 Hrs.</td>
-                <td class="state">Open</td>
-              </tr>
-              <tr class="table_row">
-                <th scope="row">6</th>
-                <td class="subject_name">Chemistry</td>
-                <td class="topic_name">Thermodynamics</td>
-                <td>25 Hrs.</td>
-                <td class="state">Close</td>
-              </tr>
-              <!-- Mathematics -->
-              <tr class="table_row">
-                <th scope="row">7</th>
-                <td class="subject_name">Mathematics</td>
-                <td class="topic_name">Relation & Function</td>
-                <td>20 Hrs.</td>
-                <td class="state">Open</td>
-
-              </tr>
-              <tr class="table_row">
-                <th scope="row">8</th>
-                <td class="subject_name">Mathematics</td>
-                <td class="topic_name">Trigeonometry</td>
-                <td>15 Hrs.</td>
-                <td class="state">Open</td>
-              </tr>
-              <tr class="table_row">
-                <th scope="row">8</th>
-                <td class="subject_name">Mathematics</td>
-                <td class="topic_name">Probability</td>
-                <td>25 Hrs.</td>
-                <td class="state">Close</td>
-              </tr>
-            </tbody>
-        </table>
     </div>
-
-
 
     <script>
         function searchFunction(){
@@ -203,6 +445,120 @@
 
             }
             
+        }
+        
+
+        myEvents = [
+            { 
+                id: "required-id-1",
+                name: "New Year", 
+                date: "Wed Jan 01 2020 00:00:00 GMT-0800 (Pacific Standard Time)", 
+                type: "holiday", 
+                everyYear: true 
+            },
+            { 
+                id: "required-id-2",
+                name: "Valentine's Day", 
+                date: "Fri Feb 14 2020 00:00:00 GMT-0800 (Pacific Standard Time)", 
+                type: "holiday", 
+                everyYear: true,
+                color: "#222"
+            },
+            { 
+                id: "required-id-3",
+                name: "Custom Date", 
+                badge: "08/03 - 08/05",
+                date: ["August/03/2020", "August/05/2020"],
+                description: "Description here",
+                type: "event", 
+            },
+            // more events here
+            ]
+
+        $('#evoCalendar').evoCalendar({
+            calendarEvents: myEvents
+        });
+        $("#evoCalendar").evoCalendar('toggleSidebar',false);
+        $("#evoCalendar").addClass('event-hide');
+
+
+
+        function selectMonth(){
+            var selected_month = document.getElementById("month_dropdown").value;
+            $("#evoCalendar").evoCalendar('selectMonth', parseInt(selected_month)-1);  
+
+
+            var cards = document.getElementsByClassName("event_card");
+            for(let card of cards){
+                console.log(card.querySelector('.event_date_container').querySelector('.event_month').innerHTML.toLowerCase());
+                if(card.querySelector('.event_date_container').querySelector('.event_month').innerHTML.toLowerCase() == numberToMonth(selected_month)){
+                    card.style.display = "";
+                }
+                else{
+                    card.style.display = 'none';
+                }
+            }
+        }
+        function selectYear(){
+            var selected_year = document.getElementById("year_dropdown").value;
+            $("#evoCalendar").evoCalendar('selectYear', parseInt(selected_year));
+
+        }
+
+        function numberToMonth(num){
+            var number = parseInt(num);
+            switch(number){
+                case 1:
+                    return 'jan';
+                case 2:
+                    return 'feb';
+                case 3:
+                    return 'mar';
+                case 4:
+                    return 'apr';
+                case 5:
+                    return 'may';
+                case 6:
+                    return 'june';
+                case 7:
+                    return 'july';
+                case 8:
+                    return 'aug';
+                case 9:
+                    return 'sep';
+                case 10:
+                    return 'oct';
+                case 11:
+                    return 'nov';
+                case 12:
+                    return 'dec';
+                default:
+                    return "";
+            }
+        }
+        
+        $('#evoCalendar')
+        .on('selectDate', function(newDate, oldDate) {
+        // do something
+            console.log(newDate.target);
+        })
+
+        function toggleList(){
+            $("#list_toggle_btn").addClass('active');
+            $("#calender_toggle_btn").removeClass('active');
+            // $("#list_container").toggleClass('hide_list_container');
+            // $("#calender_container").toggleClass('hide_calender_container');
+            $("#list_container").removeClass('hide_list_container');
+            $("#calender_container").addClass('hide_calender_container');
+
+
+        }
+        function toggleCalender(){
+            $("#list_toggle_btn").removeClass('active');
+            $("#calender_toggle_btn").addClass('active');
+            $("#list_container").addClass('hide_list_container');
+            $("#calender_container").removeClass('hide_calender_container');
+
         }
     </script>
     

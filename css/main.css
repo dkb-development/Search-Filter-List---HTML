@@ -1,0 +1,76 @@
+.calender_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 75vh;
+}
+.events_container{
+    padding-top: 20px;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: scroll;
+}
+select{
+    padding: 10px;
+    border-radius: 2px;
+}
+.event_card{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 200px;
+    margin: 10px;
+
+}
+.event_date_container{
+    width: 20%;
+    background-color: rgb(187, 184, 184);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60px;
+}
+.event_date{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.event_details{
+    width: 80%;
+    line-height: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+.event_id{
+    color: rgb(177, 173, 173);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+.location_container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.location{
+    font-size: 0.8rem;
+    color: gray;
+}
+.people_container{
+    display: flex;
+    font-size: 0.7rem;
+    color: gray;
+    font-weight: 700;
+}
+.hide_list_container{
+    display: none;
+}
+.hide_calender_container{
+    display: none;
+}
