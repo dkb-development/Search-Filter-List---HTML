@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search & Filter</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div style="width: 100%;padding: 10px;height: 20vh;">
+        
+        <form class="w-50 d-block">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Search Courses</label>
+                <div class="d-flex">
+                    <input id="search_input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search Courses/Topics here ..." onkeyup="searchFunction()">
+                    <span class="btn btn-primary ml-2">Search</span>
+                </div>
+                
+            </div>
+        </form>
+        <div id="filter_button_container">
+            <span id="filter_physics" class="btn btn-secondary" onclick="setFilter('physics')">Physics</span>
+            <span id="filter_chem" class="btn btn-secondary" onclick="setFilter('chemistry')">Chemistry</span>
+            <span id="filter_maths" class="btn btn-secondary" onclick="setFilter('mathematics')">Mathematics</span>
+            <span id="filter_open" class="btn btn-secondary" onclick="setFilter('open')">Open</span>
+            <span id="filter_close" class="btn btn-secondary" onclick="setFilter('close')">Close</span>
+
+
+        </div>
+    </div>
+    <div style="width: 100%;padding: 10px">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Topic</th>
+                <th scope="col">Hours</th>
+                <th scope="col">State</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table_row">
+                <th scope="row">1</th>
+                <td class="subject_name">Physics</td>
+                <td class="topic_name">Fluid Mechanics</td>
+                <td>20 Hrs.</td>
+                <td class="state">Open</td>
+
+              </tr>
+              <tr class="table_row">
+                <th scope="row">2</th>
+                <td class="subject_name">Physics</td>
+                <td class="topic_name">Current Electricity</td>
+                <td>15 Hrs.</td>
+                <td class="state">Open</td>
+              </tr>
+              <tr class="table_row">
+                <th scope="row">3</th>
+                <td class="subject_name">Physics</td>
+                <td class="topic_name">Modern Physics</td>
+                <td>25 Hrs.</td>
+                <td class="state">Close</td>
+              </tr>
+              <!-- Chemistry -->
+              <tr class="table_row">
+                <th scope="row">4</th>
+                <td class="subject_name">Chemistry</td>
+                <td class="topic_name">Chemical Bonding</td>
+                <td>20 Hrs.</td>
+                <td class="state">Open</td>
+
+              </tr>
+              <tr class="table_row">
+                <th scope="row">5</th>
+                <td class="subject_name">Chemistry</td>
+                <td class="topic_name">General Organic Chemistry</td>
+                <td>15 Hrs.</td>
+                <td class="state">Open</td>
+              </tr>
+              <tr class="table_row">
+                <th scope="row">6</th>
+                <td class="subject_name">Chemistry</td>
+                <td class="topic_name">Thermodynamics</td>
+                <td>25 Hrs.</td>
+                <td class="state">Close</td>
+              </tr>
+              <!-- Mathematics -->
+              <tr class="table_row">
+                <th scope="row">7</th>
+                <td class="subject_name">Mathematics</td>
+                <td class="topic_name">Relation & Function</td>
+                <td>20 Hrs.</td>
+                <td class="state">Open</td>
+
+              </tr>
+              <tr class="table_row">
+                <th scope="row">8</th>
+                <td class="subject_name">Mathematics</td>
+                <td class="topic_name">Trigeonometry</td>
+                <td>15 Hrs.</td>
+                <td class="state">Open</td>
+              </tr>
+              <tr class="table_row">
+                <th scope="row">8</th>
+                <td class="subject_name">Mathematics</td>
+                <td class="topic_name">Probability</td>
+                <td>25 Hrs.</td>
+                <td class="state">Close</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script>
+        function searchFunction(){
+            var search_input = document.getElementById("search_input").value.toUpperCase();
+
+            if(search_input != ""){
+                var rows = document.querySelectorAll(".table_row");
+                for(let row of rows){
+                    if(row.querySelector(".subject_name").innerHTML.toUpperCase().indexOf(search_input) > -1){
+                        row.style.display = '';
+                    }
+                    else if(row.querySelector(".topic_name").innerHTML.toUpperCase().indexOf(search_input) > -1){
+                        row.style.display = '';
+                    }
+                    else{
+                        row.style.display = 'none';
+
+                    }
+                }
+            }
+            else{
+                var rows = document.querySelectorAll(".table_row");
+                for(let row of rows){
+                    row.style.display = '';
+                }
+            }
+        }
+
+
+        function setFilter(filter_text){
+            // console.log(this.idName);
+            var filter_buttons = document.getElementById('filter_button_container').querySelectorAll('span');
+            for(let filter_button of filter_buttons){
+                // filter_button.className += 'active';
+                // filter_button.className.replace(" active","");
+                // console.log(filter_button.classList.contains());
+                
+                // Styling the filter buttons
+                if(filter_button.classList.contains('active')){
+                    filter_button.classList.remove('active');
+                }
+                if(filter_button.innerHTML.toUpperCase() == filter_text.toUpperCase()){
+                    filter_button.className += ' active';
+                }
+
+
+                // Filtering the list
+                var rows = document.querySelectorAll(".table_row");
+                if(filter_text == 'physics' || filter_text == 'mathematics' || filter_text == 'chemistry'){
+                    for(let row of rows){
+                        if(row.querySelector(".subject_name").innerHTML.toUpperCase().indexOf(filter_text.toUpperCase()) > -1){
+                            row.style.display = '';
+                        }
+                        else{
+                            row.style.display = 'none';
+
+                        }
+                    }
+
+                }
+                else if(filter_text == 'open' || filter_text == 'close'){
+                    for(let row of rows){
+                        if(row.querySelector(".state").innerHTML.toUpperCase().indexOf(filter_text.toUpperCase()) > -1){
+                            row.style.display = '';
+                        }
+                        else{
+                            row.style.display = 'none';
+
+                        }
+                    }
+                }
+
+            }
+            
+        }
+    </script>
+    
+</body>
+</html>
